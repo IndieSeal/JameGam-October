@@ -29,6 +29,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void OnMove(Vector2 input)
     {
+        if(!IsGrounded()) return;
         rb.linearVelocityX = input.x * movingSpeed * Time.deltaTime;
     }
 
