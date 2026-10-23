@@ -19,12 +19,14 @@ public class PlayerMovement : MonoBehaviour
     {
         UserInput.OnMove += OnMove;
         UserInput.OnJump += OnJump;
+        UserInput.OnReset += OnReset;
     }
 
     void OnDisable()
     {
         UserInput.OnMove -= OnMove;
         UserInput.OnJump -= OnJump;
+        UserInput.OnReset -= OnReset;
     }
 
     private void OnMove(Vector2 input)
@@ -37,6 +39,13 @@ public class PlayerMovement : MonoBehaviour
     {
         if(!IsGrounded()) return;
         rb.linearVelocityY = jumpForce;
+    }
+
+    private void OnReset()
+    {
+        if(IsGrounded() || rb.linearVelocity.sqrMagnitude > 0.1f) return;
+
+        transform.eulerAngles = Vector2.zero;
     }
 
     private bool IsGrounded() => Physics2D.OverlapCircle(transform.position, groundedRadius, groundMask);
