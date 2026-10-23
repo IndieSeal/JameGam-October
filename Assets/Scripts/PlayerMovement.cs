@@ -4,6 +4,7 @@ public class PlayerMovement : MonoBehaviour
 {
     [Header("Components")]
     [SerializeField] private Rigidbody2D rb;
+    [SerializeField] private Animator animator;
     
     [Header("Movement")]
     [SerializeField] private float movingSpeed = 5;
@@ -27,6 +28,11 @@ public class PlayerMovement : MonoBehaviour
         UserInput.OnMove -= OnMove;
         UserInput.OnJump -= OnJump;
         UserInput.OnReset -= OnReset;
+    }
+
+    void Update()
+    {
+        animator.SetBool("IsGrounded", IsGrounded());
     }
 
     private void OnMove(Vector2 input)
