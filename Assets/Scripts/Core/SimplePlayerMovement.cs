@@ -22,14 +22,14 @@ public class SimplePlayerMovement : MonoBehaviour
         InputActionAsset actions = inputActions != null ? inputActions : InputSystem.actions;
         if (actions == null)
         {
-            Debug.LogWarning("SimplePlayerMovement requires an InputActionAsset.", this);
+            //Debug.logWarning("SimplePlayerMovement requires an InputActionAsset.", this);
             return;
         }
 
         moveAction = actions.FindAction(MOVE_ACTION_NAME, false);
         if (moveAction == null)
         {
-            Debug.LogWarning($"SimplePlayerMovement could not find the {MOVE_ACTION_NAME} action.", this);
+            //Debug.logWarning($"SimplePlayerMovement could not find the {MOVE_ACTION_NAME} action.", this);
         }
     }
 
